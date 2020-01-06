@@ -1,11 +1,13 @@
 package application
 
 import (
-	"fmt"
+	log "github.com/sirupsen/logrus"
 	"net/http"
 )
 
-func HomeHandler(writer http.ResponseWriter, request *http.Request) {
-	fmt.Println("handling")
-	writer.WriteHeader(http.StatusOK)
+func HomeHandler(logger *log.Logger) func(writer http.ResponseWriter, request *http.Request) {
+	return func(writer http.ResponseWriter, request *http.Request) {
+		logger.Info("handling")
+		writer.WriteHeader(http.StatusOK)
+	}
 }
