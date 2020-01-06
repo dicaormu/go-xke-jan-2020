@@ -5,10 +5,11 @@ import (
 	"github.com/gorilla/mux"
 	"net"
 	"net/http"
+	"os"
 )
 
 func main() {
-	port := "8080"
+	port := os.Getenv("PORT")
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", application.HomeHandler)
